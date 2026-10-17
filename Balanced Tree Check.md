@@ -30,9 +30,34 @@ root = [1, 2, 3, 4, N, N, N, 5] Output: false
 - **Expected Time Complexity:** O(n)
 - **Expected Auxiliary Space Complexity:** O(h)
 
-### Accepted Solutions (1)
+### Accepted Solutions (2)
 
 #### Solution 1 (Java)
+
+- **Submitted:** 2026-10-17 14:01:21
+- **Status:** Correct
+- **Marks:** 0
+
+```java
+class Solution {
+    static boolean flag;
+    public int level(Node root){
+        if(root==null) return 0;
+        int leftLevel = level(root.left);
+        int rightLevel = level(root.right);
+        if(Math.abs(leftLevel-rightLevel)>1) flag = false;
+        return 1 + Math.max(leftLevel,rightLevel);
+    }
+    public boolean isBalanced(Node root) {
+        if(root==null) return true;
+        flag = true;
+        level(root);
+        return flag;
+    }
+}
+```
+
+#### Solution 2 (Java)
 
 - **Submitted:** 2026-10-17 12:50:54
 - **Status:** Correct
@@ -54,4 +79,4 @@ class Solution {
 }
 ```
 
-*Generated on: 10/17/2026, 1:18:39 PM*
+*Generated on: 10/17/2026, 2:01:16 PM*
