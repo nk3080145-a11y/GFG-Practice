@@ -43,9 +43,34 @@ root[] = [1, 3, 4, 2, 5]
 - **Expected Time Complexity:** O(n)
 - **Expected Auxiliary Space Complexity:** O(1)
 
-### Accepted Solutions (1)
+### Accepted Solutions (2)
 
 #### Solution 1 (Java)
+
+- **Submitted:** 2026-10-19 11:34:54
+- **Status:** Correct
+- **Marks:** 0
+
+```java
+class Solution {
+    public static void flatten(Node root) {
+        if(root==null) return;
+        Node lst = root.left;
+        Node rst = root.right;
+        root.left = null; root.right = null;
+        flatten(lst);
+        flatten(rst);
+        root.right = lst;
+        Node temp = root;
+        while(temp.right!=null){
+            temp = temp.right;
+        }
+        temp.right = rst;
+    }
+}
+```
+
+#### Solution 2 (Java)
 
 - **Submitted:** 2026-10-19 11:29:26
 - **Status:** Correct
@@ -75,4 +100,4 @@ class Solution {
 }
 ```
 
-*Generated on: 10/19/2026, 11:29:19 AM*
+*Generated on: 10/19/2026, 11:34:50 AM*
