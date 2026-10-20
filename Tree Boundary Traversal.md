@@ -45,9 +45,86 @@ root = [1, N, 2, N, 3, N, 4, N, N]
 - **Expected Time Complexity:** O(n)
 - **Expected Auxiliary Space Complexity:** O(h)
 
-### Accepted Solutions (1)
+### Accepted Solutions (2)
 
 #### Solution 1 (Java)
+
+- **Submitted:** 2026-10-20 11:42:43
+- **Status:** Correct
+- **Marks:** 0
+
+```java
+class Solution {
+    public ArrayList<Integer> boundaryTraversal(Node root) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.add(root.data);
+        if(root.left==null && root.right==null) return ans;
+        leftBoundary(root.left,ans);
+        nodeBoundary(root,ans);
+        rightBoundary(root.right,ans);
+        return ans;
+    }
+    public void leftBoundary(Node root,ArrayList<Integer> ans){
+        while(root!=null){
+            if(root.left==null && root.right==null) break;
+            ans.add(root.data);
+            if(root.left!=null) root = root.left;
+            else root = root.right;
+        }
+    }
+    public void nodeBoundary(Node root, ArrayList<Integer> ans){
+        if(root==null) return;
+        if(root.left==null && root.right==null) ans.add(root.data);
+        nodeBoundary(root.left,ans);
+        nodeBoundary(root.right,ans);
+    }
+    public void rightBoundary(Node root,ArrayList<Integer> ans){
+        ArrayList<Integer> helper = new ArrayList<>();
+        while(root!=null){
+            if(root.left==null && root.right==null) break;
+            helper.add(root.data);
+            if(root.right!=null) root = root.right;
+            else root = root.left;
+        }
+        int n = helper.size()-1;
+        for(int i=n;i>=0;i--){
+            int temp = helper.get(i);
+            ans.add(temp);
+        }
+    }
+    // public ArrayList<Integer> boundaryTraversal(Node root) {
+    //     ArrayList<Integer> ans = new ArrayList<>();
+    //     ans.add(root.data);
+    //     if(root.left==null && root.right==null) return ans;
+    //     leftBoundary(root.left,ans);
+    //     nodeBoundary(root,ans);
+    //     rightBoundary(root.right,ans);
+    //     return ans;
+    // }
+    // public void leftBoundary(Node root,ArrayList<Integer> ans){
+    //     if(root==null) return;
+    //     if(root.left==null && root.right==null) return;
+    //     ans.add(root.data);
+    //     if(root.left!=null) leftBoundary(root.left,ans);
+    //     else leftBoundary(root.right,ans);
+    // }
+    // public void nodeBoundary(Node root, ArrayList<Integer> ans){
+    //     if(root==null) return;
+    //     if(root.left==null && root.right==null) ans.add(root.data);
+    //     nodeBoundary(root.left,ans);
+    //     nodeBoundary(root.right,ans);
+    // }
+    // public void rightBoundary(Node root,ArrayList<Integer> ans){
+    //     if(root==null) return;
+    //     if(root.left==null && root.right==null) return;
+    //     if(root.right!=null) rightBoundary(root.right,ans);
+    //     else rightBoundary(root.left,ans);
+    //     ans.add(root.data);
+    // }
+}
+```
+
+#### Solution 2 (Java)
 
 - **Submitted:** 2026-10-20 11:26:22
 - **Status:** Correct
@@ -87,4 +164,4 @@ class Solution {
 }
 ```
 
-*Generated on: 10/20/2026, 11:29:58 AM*
+*Generated on: 10/20/2026, 11:42:40 AM*
