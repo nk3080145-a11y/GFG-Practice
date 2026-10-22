@@ -35,9 +35,30 @@ root = [2, 1, 3, N, N, N, 6], key = 4Output: [2, 1, 3, N, N, N, 6, 4]
 - **Expected Time Complexity:** O(h)
 - **Expected Auxiliary Space Complexity:** O(1)
 
-### Accepted Solutions (1)
+### Accepted Solutions (2)
 
 #### Solution 1 (Java)
+
+- **Submitted:** 2026-10-22 20:47:31
+- **Status:** Correct
+- **Marks:** 0
+
+```java
+class Solution {
+    public Node insert(Node root, int key) {
+        if(root==null) return new Node(key);
+        if(root.data<key){
+            root.right = insert(root.right,key);
+        }
+        else if(root.data>key){
+            root.left = insert(root.left,key);
+        }
+        return root;
+    }
+}
+```
+
+#### Solution 2 (Java)
 
 - **Submitted:** 2026-10-22 20:40:57
 - **Status:** Correct
@@ -63,4 +84,4 @@ class Solution {
 }
 ```
 
-*Generated on: 10/22/2026, 8:41:11 PM*
+*Generated on: 10/22/2026, 8:47:43 PM*
