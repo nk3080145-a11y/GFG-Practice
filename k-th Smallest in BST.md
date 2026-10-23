@@ -29,9 +29,36 @@ root = [2, 1, 3], k = 5
 - **Expected Time Complexity:** O(n)
 - **Expected Auxiliary Space Complexity:** O(h)
 
-### Accepted Solutions (1)
+### Accepted Solutions (2)
 
 #### Solution 1 (Java)
+
+- **Submitted:** 2026-10-23 13:03:10
+- **Status:** Correct
+- **Marks:** 0
+
+```java
+class Solution {
+    public int inorder(Node root,int[] count){
+        if(root==null) return -1;
+        int curr = inorder(root.left,count);
+        if(curr!=-1){
+            return curr;
+        }
+        count[0]--;
+        if(count[0]==0){
+            return root.data;
+        }
+        return inorder(root.right,count);
+    }
+    public int kthSmallest(Node root, int k) {
+        int[] count = {k};
+        return inorder(root,count);
+    }
+}
+```
+
+#### Solution 2 (Java)
 
 - **Submitted:** 2026-10-23 12:27:11
 - **Status:** Correct
@@ -54,4 +81,4 @@ class Solution {
 }
 ```
 
-*Generated on: 10/23/2026, 12:27:27 PM*
+*Generated on: 10/23/2026, 1:03:25 PM*
