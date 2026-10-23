@@ -31,9 +31,33 @@ root = [2, 1, 6, N, N, 3, 7] Output: [16, 18, 7, N, N, 13, 0]Explanation: Every 
 - **Expected Time Complexity:** O(n)
 - **Expected Auxiliary Space Complexity:** O(n)
 
-### Accepted Solutions (1)
+### Accepted Solutions (2)
 
 #### Solution 1 (Java)
+
+- **Submitted:** 2026-10-23 22:27:14
+- **Status:** Correct
+- **Marks:** 0
+
+```java
+class Solution {
+    static int sum;
+    public void inorder(Node root){
+        if(root==null) return;
+        inorder(root.right);
+        int val = root.data;
+        root.data = sum;
+        sum += val;
+        inorder(root.left);
+    }
+    public void transformTree(Node root) {
+        sum = 0;
+        inorder(root);
+    }
+}
+```
+
+#### Solution 2 (Java)
 
 - **Submitted:** 2026-10-23 22:10:59
 - **Status:** Correct
@@ -60,4 +84,4 @@ class Solution {
 }
 ```
 
-*Generated on: 10/23/2026, 10:11:14 PM*
+*Generated on: 10/23/2026, 10:27:27 PM*
