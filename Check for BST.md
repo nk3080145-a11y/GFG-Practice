@@ -21,9 +21,35 @@ false
 - **Expected Time Complexity:** O(n)
 - **Expected Auxiliary Space Complexity:** O(h)
 
-### Accepted Solutions (1)
+### Accepted Solutions (2)
 
 #### Solution 1 (Java)
+
+- **Submitted:** 2026-10-23 19:02:25
+- **Status:** Correct
+- **Marks:** 0
+
+```java
+class Solution {
+    public boolean isBST(Node root) {
+        return isValid(root, null, null);
+    }
+    private boolean isValid(Node root, Node minNode, Node maxNode) {
+    // Base case: agar node null hai, toh valid BST hai
+        if (root == null) return true;
+    // Agar current node ki value min limit se choti ya barabar hai, toh invalid BST
+        if (minNode != null && root.data <= minNode.data) return false;
+    // Agar current node ki value max limit se badi ya barabar hai, toh invalid BST
+        if (maxNode != null && root.data >= maxNode.data) return false;
+             // Left subtree ke liye max limit current node ban jayegi
+             // Right subtree ke liye min limit current node ban jayegi
+        return isValid(root.left, minNode, root) && isValid(root.right, root, maxNode);
+         
+     }
+}
+```
+
+#### Solution 2 (Java)
 
 - **Submitted:** 2026-10-23 18:43:23
 - **Status:** Correct
@@ -49,4 +75,4 @@ class Solution {
 }
 ```
 
-*Generated on: 10/23/2026, 6:43:35 PM*
+*Generated on: 10/23/2026, 7:02:34 PM*
