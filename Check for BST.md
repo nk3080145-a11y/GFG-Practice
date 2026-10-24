@@ -21,9 +21,43 @@ false
 - **Expected Time Complexity:** O(n)
 - **Expected Auxiliary Space Complexity:** O(h)
 
-### Accepted Solutions (2)
+### Accepted Solutions (3)
 
 #### Solution 1 (Java)
+
+- **Submitted:** 2026-10-24 12:37:07
+- **Status:** Correct
+- **Marks:** 0
+
+```java
+class Pair{
+    int max;
+    int min;
+    Pair(int max,int min){
+        this.max = max;
+        this.min = min;
+    }
+}
+class Solution {
+    static boolean flag;
+    public Pair build(Node root){
+        if(root==null) return new Pair(Integer.MIN_VALUE,Integer.MAX_VALUE);
+        Pair left = build(root.left);
+        Pair right = build(root.right);
+        int max = Math.max(root.data,Math.max(left.max,right.max));
+        int min = Math.min(root.data,Math.min(left.min,right.min));
+        if(root.data<=left.max || root.data>=right.min) flag = false;
+        return new Pair(max,min);
+    }
+    public boolean isBST(Node root) {
+        flag = true;
+        build(root);
+        return flag;
+    }
+}
+```
+
+#### Solution 2 (Java)
 
 - **Submitted:** 2026-10-23 19:02:25
 - **Status:** Correct
@@ -49,7 +83,7 @@ class Solution {
 }
 ```
 
-#### Solution 2 (Java)
+#### Solution 3 (Java)
 
 - **Submitted:** 2026-10-23 18:43:23
 - **Status:** Correct
@@ -75,4 +109,4 @@ class Solution {
 }
 ```
 
-*Generated on: 10/23/2026, 7:02:34 PM*
+*Generated on: 10/24/2026, 12:37:25 PM*
