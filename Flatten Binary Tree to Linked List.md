@@ -4,48 +4,75 @@ The problem can be found at the following link: [Question Link](https://www.geek
 
 ### Problem Description
 
-**Task:** Given the root of a binary tree, flatten the tree into a Linked list:
-The linked list should use the same Node class where the right child pointer points to the next node in the list and the left child pointer is always null.
-The linked list nodes should be in the same order as a preorder traversal of the binary tree.
+**Task:** Given a binary tree, flatten the tree into a Linked list:The linked list should use the same Node class where the right child pointer points to the next node in the list and the left child pointer is always null.The linked list nodes should be in the same order as a preorder traversal of the binary tree.Examples:Input: root[] = [1, 2, 5, 3, 4, 6]
 
 #### Examples
 
 ##### Example 1
 
-- **Input:**
-```text
-root[] = [1, 2, 5, 3, 4, 6]
-```
-- **Output:**
-```text
-[1, 2, 3, 4, 5, 6] Explanation: After flattening, the tree looks like: 1 \ 2 \ 3 \ 4 \ 5 \ 6Here, left of each node points to NULL and right contains the next node in preorder.The inorder traversal of this flattened tree is 1 2 3 4 5 6.
-```
-
-##### Example 2
-
-- **Input:**
-```text
-root[] = [1, 3, 4, 2, 5]
-```
 - **Output:**
 ```text
 [1, 3, 4, 2, 5]
 ```
 - **Explanation:** After flattening, the tree looks like: 1 \ 3 \ 4 \ 2 \ 5 Here, left of each node points to NULL and right contains the next node in preorder.The inorder traversal of this flattened tree is 1 3 4 2 5.
 
-#### Constraints
-
-- **1.** `1 <= number of nodes in binary tree <= 10⁵`
-- **2.** `1 <= data of nodes <= 105`
-
 ### Time and Auxiliary Space Complexity
 
 - **Expected Time Complexity:** O(n)
 - **Expected Auxiliary Space Complexity:** O(1)
 
-### Accepted Solutions (2)
+### Accepted Solutions (4)
 
 #### Solution 1 (Java)
+
+- **Submitted:** 2026-10-25 21:39:33
+- **Status:** Correct
+- **Marks:** 0
+
+```java
+class Solution {
+    public static void flatten(Node root) {
+        Node curr = root;
+        while(curr!=null){
+            if(curr.left!=null){
+                Node pred = curr.left;
+                while(pred.right!=null) pred = pred.right;
+                pred.right = curr.right;
+                curr.right = curr.left;
+                curr.left = null;
+            }
+            curr = curr.right;
+        }
+    }
+}
+```
+
+#### Solution 2 (Java)
+
+- **Submitted:** 2026-10-25 21:39:16
+- **Status:** Correct
+- **Marks:** 0
+
+```java
+class Solution {
+    public static void flatten(Node root) {
+        Node curr = root;
+        while(curr!=null){
+            if(curr.left!=null){
+                Node pred = curr.left;
+                while(pred.right!=null) pred = pred.right;
+                pred.right = curr.right;
+                curr.right = curr.left;
+                curr.left = null;
+                curr = curr.right;
+            }
+            else curr = curr.right;
+        }
+    }
+}
+```
+
+#### Solution 3 (Java)
 
 - **Submitted:** 2026-10-19 11:34:54
 - **Status:** Correct
@@ -70,7 +97,7 @@ class Solution {
 }
 ```
 
-#### Solution 2 (Java)
+#### Solution 4 (Java)
 
 - **Submitted:** 2026-10-19 11:29:26
 - **Status:** Correct
@@ -100,4 +127,4 @@ class Solution {
 }
 ```
 
-*Generated on: 10/19/2026, 11:34:50 AM*
+*Generated on: 10/25/2026, 9:40:01 PM*
