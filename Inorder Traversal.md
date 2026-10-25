@@ -37,9 +37,45 @@ root = [8, 1, 5, N, 7, 10, 6, N, 10, 6]
 - **Expected Time Complexity:** O(n)
 - **Expected Auxiliary Space Complexity:** O(1)
 
-### Accepted Solutions (2)
+### Accepted Solutions (3)
 
 #### Solution 1 (Java)
+
+- **Submitted:** 2026-10-25 21:05:07
+- **Status:** Correct
+- **Marks:** 0
+
+```java
+class Solution {
+    public ArrayList<Integer> inOrder(Node root) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        Node curr = root;
+        while(curr!=null){
+            if(curr.left!=null){
+                Node p = curr.left;
+                while(p.right!=null && p.right!=curr)
+                    p = p.right;
+                if(p.right==null){
+                    p.right = curr;
+                    curr = curr.left;
+                }
+                else{
+                    p.right = null;
+                    ans.add(curr.data);
+                    curr = curr.right;
+                }
+            }
+            else{
+                ans.add(curr.data);
+                curr = curr.right;
+            }
+        }
+        return ans;
+    }
+}
+```
+
+#### Solution 2 (Java)
 
 - **Submitted:** 2026-10-19 21:29:42
 - **Status:** Correct
@@ -73,7 +109,7 @@ class Solution {
 }
 ```
 
-#### Solution 2 (Java)
+#### Solution 3 (Java)
 
 - **Submitted:** 2026-10-13 21:39:21
 - **Status:** Correct
@@ -95,4 +131,4 @@ class Solution {
 }
 ```
 
-*Generated on: 10/19/2026, 9:29:34 PM*
+*Generated on: 10/25/2026, 9:05:23 PM*
